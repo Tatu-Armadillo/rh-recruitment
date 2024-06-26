@@ -1,0 +1,41 @@
+version: '3.9'
+services:
+  db:
+    image: postgres
+    container_name: postgres_db
+    shm_size: 128mb
+    restart: always
+    environment:
+      POSTGRES_USER: collaborator
+      POSTGRES_DB: collaborator
+      POSTGRES_PASSWORD: collaborator
+    ports:
+      - "3310:5432"
+    expose:
+      - "5432"
+    networks:
+      - collaborator-postgres-network
+  
+  mailhog:
+    image: mailhog/mailhog
+    container_name: mailhog
+    ports:
+      - "1025:1025"  # Porta SMTP
+      - "8025:8025"  # Interface Web
+    networks:
+      - collaborator-postgres-network
+  # app:
+  #   build: .
+  #   restart: always
+  #   container_name: spring_boot_app
+  #   environment:
+  #     SPRING_DATASOURCE_URL: jdbc:postgresql://postgres_db:5432/collaborator?currentSchema=challenge
+  #     SPRING_DATASOURCE_USERNAME: collaborator
+  #     SPRING_DATASOURCE_PASSWORD: collaborator
+  #   ports:
+  #     - "9090:9090"
+  #   depends_on:
+  #     - db
+networks:
+  collaborator-postgres-network:
+    driver: bridge
