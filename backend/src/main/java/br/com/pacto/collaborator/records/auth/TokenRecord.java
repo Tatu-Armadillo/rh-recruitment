@@ -1,7 +1,10 @@
 package br.com.pacto.collaborator.records.auth;
 
+import java.util.Set;
+
 public record TokenRecord(
         String userName,
-        String token) {
+        String token,
+        Set<String> permissions) {
 
 }

@@ -45,7 +45,11 @@ public class AuthService {
         final var authentication = this.authenticationManager
                 .authenticate(new UsernamePasswordAuthenticationToken(username, password));
 
-        final var token = new TokenRecord(username, tokenService.createToken((User) authentication.getPrincipal()));
+        final var token = new TokenRecord(
+            username, 
+            tokenService.createToken((User) 
+            authentication.getPrincipal()), 
+            user.getRoles());
 
         return token;
     }

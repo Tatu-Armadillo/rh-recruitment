@@ -3,6 +3,7 @@ package br.com.pacto.collaborator.records.job;
 import br.com.pacto.collaborator.model.Job;
 
 public record JobRecord(
+        Long id,
         String title,
         String description,
         String requirements) {
@@ -17,6 +18,7 @@ public record JobRecord(
 
     public static JobRecord toRecord(final Job entity) {
         return new JobRecord(
+                entity.getIdJob(),
                 entity.getTitle(),
                 entity.getDescription(),
                 entity.getRequirements());

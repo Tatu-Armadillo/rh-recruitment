@@ -1,4 +1,5 @@
 export interface Token {
     userName: string,
-    token: string
+    token: string,
+    permissions: string[]
 }

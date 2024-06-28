@@ -54,7 +54,7 @@ public class UserService implements UserDetailsService {
         this.userRepository.save(user);
     }
 
-    public UserDetails findByUsername(final String username) {
+    public User findByUsername(final String username) {
         return this.userRepository.findByUsername(username);
     }
 
